@@ -2,7 +2,7 @@ import express from 'express';
 
 const tweets=[
     {
-        id='1',
+        id:'1',
         text:'드림코딩',
         createAt:Date.now().toString(),
         name:'Bob',
