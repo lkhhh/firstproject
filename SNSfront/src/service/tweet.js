@@ -1,20 +1,14 @@
 export default class TweetService {
 
 
-  constructor(baseURL){
-    this.baseURL=baseURL;
+  constructor(http){
+    this.http=http;
   }
   async getTweets(username){
     const query=username?`?username=${username}`:'';
-    const response=await fetch(`${this.baseURL}/tweets${query}`,{
+    return this.http.fetch(`/tweets${query}`,{
       method:'GET',
-      headers:{'Content-Type':'application/json'},
     });
-    const data=await response.json();
-    if(response.status!==200){
-      throw new Error(data.message);
-    }
-    return data;
   }
 
   tweets = [
