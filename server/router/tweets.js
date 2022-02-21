@@ -13,15 +13,19 @@ const validateTweet=[
 ];
 //GET/tweets
 //GET/tweets?username=username
-router.get('/',tweetControlloer.getTweets); //함수 호출이 아닌 함수를 붙이는 것이기 때문에 getTweets()가 아님
-//GET/tweets/id
-router.get('/:id',tweetControlloer.getTweet)
-//POST/tweets
+//함수 호출이 아닌 함수를 붙이는 것이기 때문에 getTweets()가 아님
+ router.get('/', isAuth, tweetController.getTweets);
 
-router.post('/',validateTweet,tweetControlloer.createTweet)
-//PUT/tweets/:id
-router.put('/:id',validateTweet,tweetControlloer.updateTweet)
-//DELETE/tweets/:id
-router.delete('/:id',validateTweet,tweetControlloer.deleteTweet)
+// GET /tweets/:id
+router.get('/:id', isAuth, tweetController.getTweet);
+
+// POST /tweeets
+router.post('/', isAuth, validateTweet, tweetController.createTweet);
+
+// PUT /tweets/:id
+router.put('/:id', isAuth, validateTweet, tweetController.updateTweet);
+
+// DELETE /tweets/:id
+router.delete('/:id', isAuth, tweetController.deleteTweet);
 
 export default router;
