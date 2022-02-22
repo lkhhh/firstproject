@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import {} from 'express-async-errors';
 import * as userRepository from '../data/auth.js';
 
 // TODO: Make it secure!

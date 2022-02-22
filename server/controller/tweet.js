@@ -1,16 +1,17 @@
 
-import * as tweetRepoitory from '../data/tweet.js'
+import * as tweetRepository from '../data/tweet.js'
+
 //동기적 처리해야하니 추후 async처리
 export async function getTweets(req,res){
     const username=req.query.username;
     const data=await (username 
-        ? tweetRepoitory.getAllByUsername(username)
-        :tweetRepoitory.getAll());
+        ? tweetRepository.getAllByUsername(username)
+        :tweetRepository.getAll());
     res.status(200).json(data);
 }
 export async function getTweet(req,res){
     const id=req.params.id;
-    const tweet=await tweetRepoitory.getById(id);
+    const tweet=await tweetRepository.getById(id);
     if(tweet){
         res.status(200).json(tweet);
     }else{
@@ -47,6 +48,6 @@ export async function deleteTweet(req,res){
   if (tweet.userId !== req.userId) {
     return res.sendStatus(403);
   }
-    tweetRepoitory.remove(id)
+    tweetRepository.remove(id)
     res.sendStatus(204);
 }

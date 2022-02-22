@@ -10,7 +10,7 @@ export const isAuth = async (req, res, next) => {
   }
 
   const token = authHeader.split(' ')[1];
-  // 보안성 검토
+  // TODO: Make it secure!
   jwt.verify(
     token,
     'F2dN7x8HVzBWaQuEEDnhsvHXRWqAR63z',

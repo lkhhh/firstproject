@@ -1,7 +1,8 @@
 import express from 'express';
-import * as tweetControlloer from '../controller/tweet.js'
-import {body} from 'express-validator';
-import {validate} from '../middlewawre/validator.js';
+import { body } from 'express-validator';
+import * as tweetController from '../controller/tweet.js';
+import { isAuth } from '../middleware/auth.js';
+import { validate } from '../middleware/validator.js';
 
 const router=express.Router();
 //Contract Testing --검색하고 찾아보기
