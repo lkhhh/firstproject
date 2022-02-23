@@ -5,10 +5,13 @@ import helmet from 'helmet';
 import tweetsRouter from './router/tweets.js'
 import authRouter from './router/auth.js';
 import dotenv from 'dotenv';
+import{config} from '../config.js';
+import { initSocket } from './connection/socket.js';
+
 dotenv.config();
+console.log(process.env.JWT_SECRET);
 
 const app=express();
-console.log(process.env.JWT_SECRET);
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
@@ -24,4 +27,5 @@ app.use((error,req,res,next)=>{
     console.error(error);
     res.sendStatus(500);
 });
-app.listen(8080);
+const server=app.listen(config.host.port);
+initSocket(server);
