@@ -15,7 +15,8 @@ const baseURL = process.env.REACT_APP_BASE_URL;
 const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
 const httpClient = new HttpClient(baseURL, authErrorEventBus);
-const authService = new AuthService(httpClient, tokenStorage);
+const authService = new AuthService(httpClient, tokenStorage);const socketClient = new Socket(baseURL, () => tokenStorage.getToken());
+const socketClient = new Socket(baseURL, () => tokenStorage.getToken());
 const tweetService = new TweetService(httpClient, tokenStorage);
 
 
