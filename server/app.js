@@ -5,8 +5,10 @@ import helmet from 'helmet';
 import tweetsRouter from './router/tweets.js'
 import authRouter from './router/auth.js';
 import dotenv from 'dotenv';
-import{config} from '../config.js';
+import{config} from './config.js';
 import { initSocket } from './connection/socket.js';
+import { db } from './db/database.js';
+import Connection from 'mysql2/typings/mysql/lib/Connection';
 
 dotenv.config();
 console.log(process.env.JWT_SECRET);
@@ -27,5 +29,6 @@ app.use((error,req,res,next)=>{
     console.error(error);
     res.sendStatus(500);
 });
+db.getConnection().then((Connection=>console.log(Connection)));
 const server=app.listen(config.host.port);
 initSocket(server);
